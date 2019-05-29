@@ -17,6 +17,7 @@
     <modules>
         <module>ucat-boots-starter-database</module>
         <module>ucat-boots-starter-oauth2</module>
+        <module>ucat-boots-starter-redis</module>
     </modules>
 
 </project>

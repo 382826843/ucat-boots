@@ -18,6 +18,7 @@
 
     <modules>
         <module>ucat-boots-example-db</module>
+        <module>ucat-boots-example-redis</module>
     </modules>
 
 </project>
