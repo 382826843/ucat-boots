@@ -91,11 +91,10 @@ public class DruidDataSourceAutoConfigure {
                 contentMap.put(keyArr[1], entry.getValue());
             }
             if (!multiMap.isEmpty()) {
-                for (Map.Entry<String, Map<String, String>> entry : multiMap.entrySet()) {
-                    Map<String, String> valueMap = entry.getValue();
+                multiMap.forEach((dataSourceTitle, valueMap) -> {
                     DataSource dataSource = this.setDataSource(valueMap.get("url"), valueMap.get("username"), valueMap.get("password"));
-                    targetDataSourcesMap.put(entry.getKey(), dataSource);
-                }
+                    targetDataSourcesMap.put(dataSourceTitle, dataSource);
+                });
             }
         }
     }
