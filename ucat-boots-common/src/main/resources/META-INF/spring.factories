@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top.ucat.boots.common.config.BeanConfig,\
+top.ucat.boots.common.utils.BeanValidator
+
+

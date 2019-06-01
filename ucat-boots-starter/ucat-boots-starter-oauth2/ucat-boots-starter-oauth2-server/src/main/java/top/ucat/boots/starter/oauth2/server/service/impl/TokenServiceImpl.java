@@ -1,10 +1,13 @@
 package top.ucat.boots.starter.oauth2.server.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import top.ucat.boots.common.exception.BaseException;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.*;
 import top.ucat.boots.starter.oauth2.client.entity.OauthClientDetails;
@@ -13,8 +16,11 @@ import top.ucat.boots.starter.oauth2.server.service.api.ClientService;
 import top.ucat.boots.starter.oauth2.server.service.api.TokenService;
 import top.ucat.boots.starter.oauth2.server.service.api.UserCredentialsService;
 import top.ucat.boots.starter.oauth2.server.service.api.UserDetailsService;
+import top.ucat.boots.starter.oauth2.server.utils.KeysUtil;
 
+import java.sql.Time;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TokenServiceImpl implements TokenService {
@@ -70,7 +76,7 @@ public class TokenServiceImpl implements TokenService {
         //删除之前登录的token
         this.deleteLoginToken(systemUser);
         //保存token
-        this.saveLoginToken(systemUser);
+        this.saveLoginToken(systemUser, clientDetails);
         OauthToken oauthToken = new OauthToken(accessToken, TokenTypeEnum.broker.name(), refreshToken, clientDetails.getScope(), clientDetails.getAccessTokenValidity());
         return oauthToken;
     }
@@ -81,11 +87,14 @@ public class TokenServiceImpl implements TokenService {
      *
      * @param systemUser
      */
-    private void saveLoginToken(SystemUser systemUser) {
-        HashOperations ops = this.redisTemplate.opsForHash();
-        ops.put(OauthRedisKey.accessToken, systemUser.getAccessToken(), systemUser);
-        ops.put(OauthRedisKey.refreshToken, systemUser.getRefreshToken(), systemUser);
-        ops.put(OauthRedisKey.userList, this.getLoginTokenRedisKey(systemUser.getUserCode(), systemUser.getUserCodeType(), systemUser.getSystemType()), systemUser);
+    private void saveLoginToken(SystemUser systemUser, OauthClientDetails clientDetails) {
+        ValueOperations valueOperations = this.redisTemplate.opsForValue();
+        ValueOperations ops = this.redisTemplate.opsForValue();
+        Integer refreshTokenValidity = StringUtils.isEmpty(clientDetails.getRefreshTokenValidity()) ? 30 : clientDetails.getRefreshTokenValidity();
+        Integer accessTokenValidity = StringUtils.isEmpty(clientDetails.getAccessTokenValidity()) ? 30 : clientDetails.getAccessTokenValidity();
+        ops.set(OauthRedisKey.accessToken + "_" + systemUser.getAccessToken(), systemUser, accessTokenValidity, TimeUnit.SECONDS);
+        ops.set(OauthRedisKey.refreshToken + "_" + systemUser.getRefreshToken(), systemUser, refreshTokenValidity, TimeUnit.DAYS);
+        ops.set(KeysUtil.getUserSystemKey(systemUser.getUserCode(), systemUser.getUserCodeType(), systemUser.getSystemType()), systemUser);
     }
 
     /**
@@ -94,23 +103,16 @@ public class TokenServiceImpl implements TokenService {
      * @param systemUser
      */
     private void deleteLoginToken(SystemUser systemUser) {
-        HashOperations<String, String, SystemUser> ops = this.redisTemplate.opsForHash();
-        String loginTokenKey = this.getLoginTokenRedisKey(systemUser.getUserCode(), systemUser.getUserCodeType(), systemUser.getSystemType());
-        SystemUser oldUser = ops.get(OauthRedisKey.userList, loginTokenKey);
+        String userSystemKey = KeysUtil.getUserSystemKey(systemUser.getUserCode(), systemUser.getUserCodeType(), systemUser.getSystemType());
+        ValueOperations<String, SystemUser> valueOperations = this.redisTemplate.opsForValue();
+        SystemUser oldUser = valueOperations.get(userSystemKey);
         if (oldUser == null) {
             return;
         }
-        ops.delete(OauthRedisKey.userList, loginTokenKey);
-        ops.delete(OauthRedisKey.accessToken, oldUser.getAccessToken());
-        ops.delete(OauthRedisKey.refreshToken, oldUser.getRefreshToken());
-
+        redisTemplate.delete(userSystemKey);
+        redisTemplate.delete(OauthRedisKey.accessToken + "_" + oldUser.getAccessToken());
+        redisTemplate.delete(OauthRedisKey.refreshToken + "_" + oldUser.getRefreshToken());
     }
 
-
-    private String getLoginTokenRedisKey(String userCode, String userCodeType, String systemType) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("u:").append(userCode).append(",ut:").append(userCodeType).append(",st:").append(systemType);
-        return builder.toString();
-    }
 
 }

@@ -1,6 +1,7 @@
 package top.ucat.starter.mybatis.plugs.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.*;
 import top.ucat.boots.common.result.Result;
 import top.ucat.boots.common.result.SystemResult;
@@ -8,7 +9,25 @@ import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 import top.ucat.starter.mybatis.plugs.common.dto.AbstractBaseEntity;
 import top.ucat.starter.mybatis.plugs.common.service.BaseCrudService;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public abstract class AbstractBaseController<T extends AbstractBaseEntity, S extends BaseCrudService> {
+
+    @Resource
+    protected HttpServletRequest request;
+    @Resource
+    protected HttpServletResponse response;
+
+    @Autowired
+    private ConfigurableApplicationContext applicationContext;
+
+    @ModelAttribute
+    public void initReqAndRes(HttpServletRequest request, HttpServletResponse response) {
+        this.request = request;
+        this.response = response;
+    }
 
     @Autowired
     protected S baseCurdService;

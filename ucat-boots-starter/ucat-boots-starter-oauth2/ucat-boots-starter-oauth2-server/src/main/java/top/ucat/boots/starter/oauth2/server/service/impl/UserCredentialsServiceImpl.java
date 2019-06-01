@@ -9,6 +9,7 @@ import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthRedisKey;
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;
 import top.ucat.boots.starter.oauth2.server.dao.OauthUserCredentialsDao;
 import top.ucat.boots.starter.oauth2.server.service.api.UserCredentialsService;
+import top.ucat.boots.starter.oauth2.server.utils.KeysUtil;
 import top.ucat.starter.redis.service.RedisService;
 
 @Service
@@ -26,7 +27,7 @@ public class UserCredentialsServiceImpl implements UserCredentialsService {
 
     @Override
     public OauthUserCredentials getUserCredentials(String userCode, String userCodeType, String systemType) {
-        String key = this.getHashkey(userCode, userCodeType, systemType);
+        String key = KeysUtil.getUserSystemKey(userCode, userCodeType, systemType);
         OauthUserCredentials userCredentials = (OauthUserCredentials) redisService.getHashObj(OauthRedisKey.OAUTH_USER_CREDENTIALS, key, () -> {
             OauthUserCredentials credentials = oauthUserCredentialsDao.getOauthUserCredential(userCode, userCodeType, systemType);
             credentials = credentials == null ? new OauthUserCredentials() : credentials;
@@ -35,11 +36,6 @@ public class UserCredentialsServiceImpl implements UserCredentialsService {
         return StringUtils.isEmpty(userCredentials.getId()) ? null : userCredentials;
     }
 
-    private String getHashkey(String userCode, String userCodeType, String systemType) {
-        StringBuilder builder = new StringBuilder("u:");
-        builder.append(userCode).append(",ut:").append(userCodeType).append(",st:").append(systemType);
-        return builder.toString();
-    }
 
     @Override
     public OauthUserCredentials saveUserCredentials(String userId, String userCode, String userCodeType, String systemType) {

@@ -9,5 +9,4 @@ public class OauthRedisKey {
 
     public static String accessToken = "access_token";
     public static String refreshToken = "refresh_token";
-    public static String userList = "userList";
 }

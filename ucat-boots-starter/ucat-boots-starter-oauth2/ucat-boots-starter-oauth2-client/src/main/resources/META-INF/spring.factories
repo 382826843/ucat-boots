@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top.ucat.boots.starter.oauth2.client.config.GlobalExceptionHandler,\
+top.ucat.boots.starter.oauth2.client.config.LoginConfig,\
+top.ucat.boots.starter.oauth2.client.config.SystemLoginHandlerInterceptor

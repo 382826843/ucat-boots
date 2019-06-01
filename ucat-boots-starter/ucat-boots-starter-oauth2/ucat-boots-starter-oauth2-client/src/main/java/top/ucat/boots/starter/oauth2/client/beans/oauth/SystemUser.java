@@ -1,8 +1,6 @@
 package top.ucat.boots.starter.oauth2.client.beans.oauth;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -10,6 +8,8 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@ToString
 public class SystemUser<T> implements Serializable {
 
     private String userCode;

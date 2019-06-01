@@ -15,7 +15,7 @@ public class DbResourceConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        InterceptorRegistration interceptorRegistration = registry.addInterceptor(this.getSystemLoginHandlerInterceptor());
+        //设置默认数据源
         InterceptorRegistration interceptorRegistration = registry.addInterceptor(dbResourceHandlerInterceptor);
         interceptorRegistration.addPathPatterns("/**");
         interceptorRegistration.excludePathPatterns(PermitAllUrl.permitAllUrl());

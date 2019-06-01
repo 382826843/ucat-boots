@@ -19,6 +19,7 @@
     <modules>
         <module>ucat-boots-example-db</module>
         <module>ucat-boots-example-redis</module>
+        <module>ucat-boots-example-oauth2</module>
     </modules>
 
 </project>
