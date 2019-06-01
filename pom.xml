@@ -13,7 +13,8 @@
     <artifactId>ucat-boots</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
+<!--    mvn versions:set -DnewVersion=1.0.0 修改版本号命令-->
+<!--    SNAPSHOT-->
     <name>ucat-boots</name>
 
     <modules>
@@ -142,6 +143,15 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                    <allowSnapshots>true</allowSnapshots>
+                </configuration>
             </plugin>
 
             <!-- resource -->

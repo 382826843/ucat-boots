@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  top.ucat.boots.starter.mybatis.plugs.config.MetaObjectHandlerConfig,\
-  top.ucat.boots.starter.mybatis.plugs.config.MybatisPlusConfig

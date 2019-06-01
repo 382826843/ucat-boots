@@ -1,6 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-top.ucat.boots.starter.db.config.DruidDataSourceAutoConfigure,\
-  top.ucat.boots.starter.db.config.DruidDataSourceWrapper,\
-  top.ucat.boots.starter.db.aspect.DataSourceAspect,\
-top.ucat.boots.starter.db.interceptor.DbResourceHandlerInterceptor,\
-  top.ucat.boots.starter.db.interceptor.DbResourceConfig
