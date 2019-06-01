@@ -40,7 +40,7 @@ public class RedisServiceImpl implements RedisService {
     public Object getHashObj(String key1, String key2, Supplier supplier, long time) {
         BoundHashOperations<String, String, Object> ops = redisTemplate.boundHashOps(key1);
         Object o = ops.get(key2);
-        if (o != null) {
+        if (o == null) {
             o = supplier.get();
             ops.put(key2, o);
             redisTemplate.expire(key1, time, TimeUnit.SECONDS);

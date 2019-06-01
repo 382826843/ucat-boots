@@ -1,4 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
  top.ucat.starter.redis.config.RedisConfig,\
    top.ucat.starter.redis.service.RedisReturnService,\
-  top.ucat.starter.redis.service.RedisValueService
+  top.ucat.starter.redis.service.RedisValueService,\
+  top.ucat.starter.redis.service.RedisServiceImpl
+
+
