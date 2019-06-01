@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 
-public interface BaseDbService<T> extends IService<T> {
+public interface BaseDao<T> extends IService<T> {
     /**
      * 获取Wrapper
      *

@@ -10,9 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 
-import java.util.List;
-
-public class BaseDbServiceImpl<T extends AbstractBaseEntity> extends ServiceImpl<BaseMapper<T>, T> implements BaseDbService<T> {
+public class BaseDaoImpl<T extends AbstractBaseEntity> extends ServiceImpl<BaseMapper<T>, T> implements BaseDao<T> {
 
     @Autowired
     private BaseMapper<T> mapper;

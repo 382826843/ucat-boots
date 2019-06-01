@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 import top.ucat.starter.mybatis.plugs.common.dto.AbstractBaseEntity;
-import top.ucat.starter.mybatis.plugs.common.dto.BaseDbService;
+import top.ucat.starter.mybatis.plugs.common.dto.BaseDao;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 public class BaseCrudServiceImpl<T extends AbstractBaseEntity> implements BaseCrudService<T> {
 
     @Autowired
-    protected BaseDbService<T> baseDbService;
+    protected BaseDao<T> baseDbService;
 
 
     @Override
