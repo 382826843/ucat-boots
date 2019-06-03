@@ -1,11 +1,15 @@
 package top.ucat.boots.starter.oauth2.client.beans.oauth;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
 @Data
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class OauthTokenDto implements Serializable {
     @NotBlank(message = "请输入账号")
     private String userCode;

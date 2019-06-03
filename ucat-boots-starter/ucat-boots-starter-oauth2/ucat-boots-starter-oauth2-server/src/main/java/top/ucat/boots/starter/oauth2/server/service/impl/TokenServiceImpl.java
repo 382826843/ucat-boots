@@ -51,6 +51,10 @@ public class TokenServiceImpl implements TokenService {
                 throw new BaseException("当前用户不存在", 400);
             }
             SystemUser systemUser = userDetailsService.getSystemUser(userCredential);
+            if (systemUser == null) {
+
+            }
+
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (!encoder.matches(dto.getPassword(), systemUser.getPassword())) {
                 throw new BaseException("密码不正确 ", 400);
