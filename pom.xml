@@ -13,8 +13,8 @@
     <artifactId>ucat-boots</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-<!--    mvn versions:set -DnewVersion=1.0.0 修改版本号命令-->
-<!--    SNAPSHOT-->
+    <!--    mvn versions:set -DnewVersion=1.0.0 修改版本号命令-->
+    <!--    SNAPSHOT-->
     <name>ucat-boots</name>
 
     <modules>
@@ -40,7 +40,7 @@
         <mysql.version>8.0.13</mysql.version>
         <mybatis-plus.version>3.1.1</mybatis-plus.version>
         <hibernate-validator>5.3.4.Final</hibernate-validator>
-
+        <alibaba-fastjson>1.2.58</alibaba-fastjson>
     </properties>
 
     <dependencyManagement>
@@ -67,6 +67,13 @@
             </dependency>
 
             <!-- Commons Begin -->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${alibaba-fastjson}</version>
+            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -283,23 +290,23 @@
             </snapshots>
         </repository>
 
-<!--        <repository>-->
-<!--            <id>spring-snapshots</id>-->
-<!--            <name>Spring Snapshots</name>-->
-<!--            <url>https://repo.spring.io/snapshot</url>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--        <repository>-->
-<!--            <id>spring-milestones</id>-->
-<!--            <name>Spring Milestones</name>-->
-<!--            <url>https://repo.spring.io/milestone</url>-->
-<!--            <snapshots>-->
-<!--                <enabled>false</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--        -->
+        <!--        <repository>-->
+        <!--            <id>spring-snapshots</id>-->
+        <!--            <name>Spring Snapshots</name>-->
+        <!--            <url>https://repo.spring.io/snapshot</url>-->
+        <!--            <snapshots>-->
+        <!--                <enabled>true</enabled>-->
+        <!--            </snapshots>-->
+        <!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>spring-milestones</id>-->
+        <!--            <name>Spring Milestones</name>-->
+        <!--            <url>https://repo.spring.io/milestone</url>-->
+        <!--            <snapshots>-->
+        <!--                <enabled>false</enabled>-->
+        <!--            </snapshots>-->
+        <!--        </repository>-->
+        <!--        -->
     </repositories>
 
     <pluginRepositories>
