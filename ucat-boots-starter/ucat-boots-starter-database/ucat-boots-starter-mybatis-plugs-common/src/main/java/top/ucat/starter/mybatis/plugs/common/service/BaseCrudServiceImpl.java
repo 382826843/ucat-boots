@@ -3,6 +3,7 @@ package top.ucat.starter.mybatis.plugs.common.service;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import top.ucat.starter.mybatis.plugs.common.beans.BaseControllerPageListBo;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 import top.ucat.starter.mybatis.plugs.common.dto.AbstractBaseEntity;
 import top.ucat.starter.mybatis.plugs.common.dto.BaseDao;
@@ -16,9 +17,15 @@ public class BaseCrudServiceImpl<T extends AbstractBaseEntity> implements BaseCr
     protected BaseDao<T> baseDbService;
 
 
+
     @Override
     public PageVo queryListPage(Integer page, Integer rows, String keyWord) {
         return this.baseDbService.selectListPage(page, rows, keyWord);
+    }
+
+    @Override
+    public PageVo queryListPage(BaseControllerPageListBo bo) {
+        return this.baseDbService.selectListPage(bo);
     }
 
     @Override

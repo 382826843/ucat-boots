@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import top.ucat.starter.mybatis.plugs.common.beans.BaseControllerPageListBo;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 
 public interface BaseDao<T> extends IService<T> {
@@ -34,6 +35,8 @@ public interface BaseDao<T> extends IService<T> {
      * @return
      */
     public abstract PageVo selectListPage(Integer page, Integer rows, String keyWord);
+
+    public abstract PageVo selectListPage(BaseControllerPageListBo bo);
 
 
 }

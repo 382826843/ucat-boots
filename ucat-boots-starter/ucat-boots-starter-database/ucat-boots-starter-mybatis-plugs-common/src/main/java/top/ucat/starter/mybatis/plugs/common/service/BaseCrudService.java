@@ -1,6 +1,7 @@
 package top.ucat.starter.mybatis.plugs.common.service;
 
 
+import top.ucat.starter.mybatis.plugs.common.beans.BaseControllerPageListBo;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 
 public interface BaseCrudService<T> {
@@ -15,6 +16,8 @@ public interface BaseCrudService<T> {
      * @throws Exception
      */
     public PageVo queryListPage(Integer page, Integer rows, String keyWord);
+
+    public PageVo queryListPage(BaseControllerPageListBo bo);
 
     /**
      * 新建
