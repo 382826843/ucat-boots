@@ -1,4 +1,4 @@
-package top.ucat.boots.starter.oauth2.server.service.api;
+package top.ucat.boots.starter.oauth2.client.service.api;
 
 
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;

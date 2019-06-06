@@ -1,7 +1,6 @@
 package top.ucat.boots.starter.oauth2.server.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundHashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthRedisKey;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthTokenDto;
 import top.ucat.boots.starter.oauth2.client.entity.OauthClientDetails;
 import top.ucat.boots.starter.oauth2.server.dao.OauthClientDetailsDao;
-import top.ucat.boots.starter.oauth2.server.service.api.ClientService;
+import top.ucat.boots.starter.oauth2.client.service.api.ClientService;
 import top.ucat.starter.redis.service.RedisService;
 
 @Service

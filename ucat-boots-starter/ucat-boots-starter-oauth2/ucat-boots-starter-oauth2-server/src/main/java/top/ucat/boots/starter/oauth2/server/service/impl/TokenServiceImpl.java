@@ -1,8 +1,6 @@
 package top.ucat.boots.starter.oauth2.server.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.BoundValueOperations;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,13 +10,12 @@ import top.ucat.boots.common.exception.BaseException;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.*;
 import top.ucat.boots.starter.oauth2.client.entity.OauthClientDetails;
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;
-import top.ucat.boots.starter.oauth2.server.service.api.ClientService;
-import top.ucat.boots.starter.oauth2.server.service.api.TokenService;
-import top.ucat.boots.starter.oauth2.server.service.api.UserCredentialsService;
-import top.ucat.boots.starter.oauth2.server.service.api.UserDetailsService;
+import top.ucat.boots.starter.oauth2.client.service.api.ClientService;
+import top.ucat.boots.starter.oauth2.client.service.api.TokenService;
+import top.ucat.boots.starter.oauth2.client.service.api.UserCredentialsService;
+import top.ucat.boots.starter.oauth2.client.service.api.UserDetailsService;
 import top.ucat.boots.starter.oauth2.server.utils.KeysUtil;
 
-import java.sql.Time;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 

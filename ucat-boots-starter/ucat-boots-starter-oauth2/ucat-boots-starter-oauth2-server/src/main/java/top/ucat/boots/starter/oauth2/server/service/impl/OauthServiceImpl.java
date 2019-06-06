@@ -8,8 +8,8 @@ import top.ucat.boots.common.utils.BeanValidator;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.GrantTypeEnum;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthToken;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthTokenDto;
-import top.ucat.boots.starter.oauth2.server.service.api.OauthService;
-import top.ucat.boots.starter.oauth2.server.service.api.TokenService;
+import top.ucat.boots.starter.oauth2.client.service.api.OauthService;
+import top.ucat.boots.starter.oauth2.client.service.api.TokenService;
 
 @Service
 public class OauthServiceImpl implements OauthService {

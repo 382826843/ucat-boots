@@ -1,6 +1,5 @@
 package top.ucat.starter.mybatis.plugs.common.service;
 
-
 import top.ucat.starter.mybatis.plugs.common.beans.BaseControllerPageListBo;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
 

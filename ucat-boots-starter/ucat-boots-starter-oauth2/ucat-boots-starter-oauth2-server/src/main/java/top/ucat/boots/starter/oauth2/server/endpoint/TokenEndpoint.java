@@ -8,7 +8,7 @@ import top.ucat.boots.common.result.Result;
 import top.ucat.boots.common.result.SystemResult;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthToken;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthTokenDto;
-import top.ucat.boots.starter.oauth2.server.service.api.OauthService;
+import top.ucat.boots.starter.oauth2.client.service.api.OauthService;
 
 @RestController
 public class TokenEndpoint {

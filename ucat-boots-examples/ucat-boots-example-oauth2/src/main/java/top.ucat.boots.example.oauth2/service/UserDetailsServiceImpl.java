@@ -3,7 +3,7 @@ package top.ucat.boots.example.oauth2.service;
 import org.springframework.stereotype.Service;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.SystemUser;
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;
-import top.ucat.boots.starter.oauth2.server.service.api.UserDetailsService;
+import top.ucat.boots.starter.oauth2.client.service.api.UserDetailsService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
