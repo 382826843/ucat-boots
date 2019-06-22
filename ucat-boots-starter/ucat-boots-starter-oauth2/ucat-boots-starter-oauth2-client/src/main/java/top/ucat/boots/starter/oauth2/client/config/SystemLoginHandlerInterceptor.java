@@ -2,6 +2,10 @@ package top.ucat.boots.starter.oauth2.client.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -12,6 +16,8 @@ import top.ucat.boots.starter.oauth2.client.beans.oauth.Oauth2AccessToken;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthRedisKey;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.SystemUser;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.UserThreadLocal;
+import top.ucat.boots.starter.oauth2.client.service.api.SystemUserService;
+import top.ucat.boots.starter.oauth2.client.service.api.UserDetailsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,10 +29,13 @@ public class SystemLoginHandlerInterceptor implements HandlerInterceptor {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Autowired
+    private SystemUserService systemUserService;
 
     //前置方法
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+
 
         StringBuffer requestURL = httpServletRequest.getRequestURL();
 
@@ -37,7 +46,8 @@ public class SystemLoginHandlerInterceptor implements HandlerInterceptor {
         if (StringUtils.isEmpty(accessToken)) {
             throw new BaseException("用户凭证失效,请登录", 401);
         }
-        SystemUser user = getSystemUserByToken(accessToken);
+
+        SystemUser user = systemUserService.getSystemUserByToken(accessToken);
         if (user == null) {
             throw new BaseException("用户凭证超时,请登录", 401);
         }
@@ -47,10 +57,7 @@ public class SystemLoginHandlerInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private SystemUser getSystemUserByToken(String accessToken) {
-        SystemUser user = (SystemUser) redisTemplate.opsForValue().get(OauthRedisKey.accessToken + "_" + accessToken);
-        return user;
-    }
+
 
     public String getAuthToken(HttpServletRequest request) {
 

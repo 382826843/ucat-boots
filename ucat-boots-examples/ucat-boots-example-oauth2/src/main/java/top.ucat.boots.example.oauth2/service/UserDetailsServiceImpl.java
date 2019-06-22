@@ -13,4 +13,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         SystemUser systemUser = SystemUser.builder().password("$2a$10$uhv.nuclzMZzYOIjT7JypuJnG0NzrgW/2dwTlwN4pvAxGf9qS5cmq").build();
         return systemUser;
     }
+
+    @Override
+    public SystemUser getSystemUserByToken(String accessToken) {
+        return null;
+    }
 }

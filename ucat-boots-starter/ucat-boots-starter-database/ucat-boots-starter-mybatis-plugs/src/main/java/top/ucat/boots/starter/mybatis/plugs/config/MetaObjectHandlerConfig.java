@@ -20,6 +20,6 @@ public class MetaObjectHandlerConfig implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         //修改时添加自动填充修改时间
-//        setFieldValByName("updatetime", new Date(), metaObject);
+        setFieldValByName("updatetime", new Date(), metaObject);
     }
 }

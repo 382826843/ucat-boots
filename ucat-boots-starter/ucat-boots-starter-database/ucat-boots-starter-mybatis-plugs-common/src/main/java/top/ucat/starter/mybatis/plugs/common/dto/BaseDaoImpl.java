@@ -60,7 +60,7 @@ public class BaseDaoImpl<T extends AbstractBaseEntity> extends ServiceImpl<BaseM
         });
 
         this.setPageListWrapper(bo.getLike(), (k, v) -> {
-            wrapper.like(DbUtil.HumpToUnderline((String) k), "%" + v + "%");
+            wrapper.like(DbUtil.HumpToUnderline((String) k), v);
         });
 
         IPage<T> tiPage = selectPageByWrapper(bo.getPage(), bo.getRows(), wrapper);
