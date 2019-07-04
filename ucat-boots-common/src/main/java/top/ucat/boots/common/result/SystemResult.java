@@ -59,7 +59,7 @@ public enum SystemResult {
     }
 
     public Result getResult() {
-        return this.getResult(null);
+        return this.getResult(this.getMsg());
     }
 
     public static Result getSystemResult(Supplier<Result> supplier) {

@@ -1,5 +1,6 @@
 package top.ucat.starter.mybatis.plugs.common.dto;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -12,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import top.ucat.boots.common.utils.DbUtil;
 import top.ucat.starter.mybatis.plugs.common.beans.BaseControllerPageListBo;
 import top.ucat.starter.mybatis.plugs.common.beans.PageVo;
+import top.ucat.starter.mybatis.plugs.common.beans.SortParmVo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 public class BaseDaoImpl<T extends AbstractBaseEntity> extends ServiceImpl<BaseMapper<T>, T> implements BaseDao<T> {
@@ -62,6 +67,21 @@ public class BaseDaoImpl<T extends AbstractBaseEntity> extends ServiceImpl<BaseM
         this.setPageListWrapper(bo.getLike(), (k, v) -> {
             wrapper.like(DbUtil.HumpToUnderline((String) k), v);
         });
+
+        if (StringUtils.isNotEmpty(bo.getSort())) {
+            //排序
+            String jsonArrStr = "[]";
+            try {
+                jsonArrStr = URLDecoder.decode(bo.getSort(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            List<SortParmVo> sortParmVos = JSONArray.parseArray(jsonArrStr, SortParmVo.class);
+            sortParmVos.forEach(sortParmVo -> {
+                wrapper.orderBy(true, "asc".equals(sortParmVo.getOrder()), DbUtil.HumpToUnderline(sortParmVo.getProp()));
+            });
+        }
+
 
         IPage<T> tiPage = selectPageByWrapper(bo.getPage(), bo.getRows(), wrapper);
         return new PageVo(tiPage.getTotal(), tiPage.getRecords());

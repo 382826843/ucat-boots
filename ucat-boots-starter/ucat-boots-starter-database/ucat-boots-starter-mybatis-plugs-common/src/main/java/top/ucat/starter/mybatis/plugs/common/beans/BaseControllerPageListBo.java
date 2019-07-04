@@ -16,4 +16,5 @@ public class BaseControllerPageListBo implements Serializable {
     private String like;
     private String equal;
     private String unequal;
+    private String sort;
 }
