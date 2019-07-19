@@ -19,7 +19,4 @@ public interface UserDetailsService {
      */
     SystemUser getSystemUser(OauthUserCredentials credential);
 
-    SystemUser getSystemUserByToken(String accessToken);
-
-
 }

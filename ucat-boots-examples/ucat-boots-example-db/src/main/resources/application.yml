@@ -9,11 +9,11 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     multi:
       test2:
-        url: jdbc:mysql://localhost:3306/test2?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://localhost:3306/t?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
         username: root
         password: root
     # 填写你数据库的url、登录名、密码和数据库名
-    url: jdbc:mysql://localhost:3306/test?useSSL=false&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/t?useSSL=false&characterEncoding=utf8
     username: root
     password: root
     druid:

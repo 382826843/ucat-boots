@@ -14,8 +14,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return systemUser;
     }
 
-    @Override
-    public SystemUser getSystemUserByToken(String accessToken) {
-        return null;
-    }
 }
