@@ -55,10 +55,10 @@
             </dependency>
 
             <dependency>
-                <!--                <groupId>com.alibaba.cloud</groupId>-->
-                <!--                <artifactId>spring-cloud-alibaba</artifactId>-->
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>alibaba-spring-cloud-dependencies</artifactId>
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -259,6 +259,16 @@
     </build>
 
     <repositories>
+
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>aliyun-repos</id>
             <name>Aliyun Repository</name>
