@@ -1,6 +1,7 @@
 package top.ucat.boots.starter.db.aspect;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -64,7 +65,10 @@ public class DataSourceAspect {
     private void setDbResource(Db db) {
         if (db != null) {
             String dataSourceName = db.value();
-            DynamicDataSourceHolder.putDataSourceKey(dataSourceName);
+            if (StringUtils.isEmpty(dataSourceName))
+                DynamicDataSourceHolder.defaultDataSource();
+            else
+                DynamicDataSourceHolder.putDataSourceKey(dataSourceName);
         }
     }
 }

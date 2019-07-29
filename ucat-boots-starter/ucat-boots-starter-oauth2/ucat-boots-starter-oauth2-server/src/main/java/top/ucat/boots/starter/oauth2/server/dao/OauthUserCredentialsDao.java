@@ -43,7 +43,7 @@ public class OauthUserCredentialsDao {
         userCredentials.setCreatetime(new Date());
         String sql = "insert into oauth_user_credentials (id,user_id,user_code,user_code_type,system_type,createtime,updatetime)values(?,?,?,?,?,?,?)";
 
-        Object args[] = {UuidUtil.getUuid(), userCredentials.getId(), userCredentials.getUserCode(), userCredentials.getUserCodeType(),
+        Object args[] = {UuidUtil.getUuid(), userCredentials.getUserId(), userCredentials.getUserCode(), userCredentials.getUserCodeType(),
                 userCredentials.getSystemType(), userCredentials.getCreatetime(), userCredentials.getCreatetime()
         };
         int num = jdbcTemplate.update(sql, args);

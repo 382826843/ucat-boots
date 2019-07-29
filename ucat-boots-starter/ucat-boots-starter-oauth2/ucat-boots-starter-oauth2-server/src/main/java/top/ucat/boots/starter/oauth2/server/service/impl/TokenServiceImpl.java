@@ -49,7 +49,7 @@ public class TokenServiceImpl implements TokenService {
             }
             SystemUser systemUser = userDetailsService.getSystemUser(userCredential);
             if (systemUser == null) {
-
+                throw new BaseException("找不到用户 ", 401);
             }
 
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

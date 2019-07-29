@@ -5,6 +5,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import top.ucat.boots.common.exception.BaseException;
+import top.ucat.boots.starter.db.annotation.Db;
+import top.ucat.boots.starter.db.beans.DynamicDataSourceHolder;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthRedisKey;
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;
 import top.ucat.boots.starter.oauth2.server.dao.OauthUserCredentialsDao;
@@ -13,6 +15,7 @@ import top.ucat.boots.starter.oauth2.server.utils.KeysUtil;
 import top.ucat.starter.redis.service.RedisService;
 
 @Service
+@Db
 public class UserCredentialsServiceImpl implements UserCredentialsService {
 
 
@@ -39,7 +42,6 @@ public class UserCredentialsServiceImpl implements UserCredentialsService {
 
     @Override
     public OauthUserCredentials saveUserCredentials(String userId, String userCode, String userCodeType, String systemType) {
-
         OauthUserCredentials credential = oauthUserCredentialsDao.getOauthUserCredential(userCode, userCodeType, systemType);
         if (credential == null) {
             credential = new OauthUserCredentials();
