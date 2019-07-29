@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import top.ucat.boots.common.exception.BaseException;
+import top.ucat.boots.starter.db.annotation.Db;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.*;
 import top.ucat.boots.starter.oauth2.client.entity.OauthClientDetails;
 import top.ucat.boots.starter.oauth2.client.entity.OauthUserCredentials;
@@ -20,6 +21,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Db
 public class TokenServiceImpl implements TokenService {
 
     @Autowired

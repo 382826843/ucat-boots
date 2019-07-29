@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import top.ucat.boots.common.exception.BaseException;
+import top.ucat.boots.starter.db.annotation.Db;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthRedisKey;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthTokenDto;
 import top.ucat.boots.starter.oauth2.client.entity.OauthClientDetails;
@@ -14,6 +15,7 @@ import top.ucat.boots.starter.oauth2.client.service.api.ClientService;
 import top.ucat.starter.redis.service.RedisService;
 
 @Service
+@Db
 public class ClientServiceImpl implements ClientService {
 
     @Autowired

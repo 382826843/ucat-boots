@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import top.ucat.boots.common.exception.BaseException;
 import top.ucat.boots.common.utils.BeanValidator;
+import top.ucat.boots.starter.db.annotation.Db;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.GrantTypeEnum;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthToken;
 import top.ucat.boots.starter.oauth2.client.beans.oauth.OauthTokenDto;
@@ -12,6 +13,7 @@ import top.ucat.boots.starter.oauth2.client.service.api.OauthService;
 import top.ucat.boots.starter.oauth2.client.service.api.TokenService;
 
 @Service
+@Db
 public class OauthServiceImpl implements OauthService {
 
     @Autowired
