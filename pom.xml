@@ -40,7 +40,7 @@
         <mysql.version>8.0.13</mysql.version>
         <mybatis-plus.version>3.1.1</mybatis-plus.version>
         <hibernate-validator>5.3.4.Final</hibernate-validator>
-        <alibaba-fastjson>1.2.58</alibaba-fastjson>
+        <alibaba-fastjson>1.2.83</alibaba-fastjson>
     </properties>
 
     <dependencyManagement>
